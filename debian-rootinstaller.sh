@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install puppet;
+apt-get install -y puppet;
 mkdir -p /etc/puppet/modules;
 puppet module install puppetlabs-concat --force;
 puppet module install puppetlabs-stdlib --force;
