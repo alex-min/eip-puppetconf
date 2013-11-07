@@ -1,5 +1,6 @@
-#!/bin/bash
-apt-get install -y puppet;
+B1;3201;0c#!/bin/bash
+apt-get install -y puppet rubygems;
+gem install puppet-module;
 mkdir -p /etc/puppet/modules;
 puppet module install puppetlabs-concat --force;
 puppet module install puppetlabs-stdlib --force;
