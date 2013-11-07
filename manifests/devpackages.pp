@@ -29,15 +29,12 @@ class devpackages {
 	    		package { "python2.7": ensure => installed, }
 	    		package { "python-pip": ensure => installed, }
 	    		package { "python-dev": ensure => installed, }
-	    		package { "ruby": ensure => installed, }
-	    		package { "ruby-rvm": ensure => installed, }
-	    		package { "gem": ensure => installed, }
 				exec { "php_composer_install":
 				    command => "curl -sS https://getcomposer.org/installer | php",
 				    path    => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
 				    require => [Package['php'], Package['curl']],
 				 	creates => '/usr/local/bin/composer'
-				}
+				} ->
 				exec { "mv_composer":
 					command => 'mv composer.phar /usr/local/bin/composer',
 				    path    => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
@@ -71,6 +68,7 @@ class devpackages {
 
 				# system
 				package { "htop": ensure => installed, }
+				package { "iftop": ensure => installed, }
 				package { "bash": ensure => installed, }
 	    	}
 	    }

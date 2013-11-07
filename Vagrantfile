@@ -33,7 +33,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
   # config.ssh.forward_agent = true
-
+  config.vm.network "forwarded_port", guest: 9292, host: 9292
+  config.vm.network "forwarded_port", guest: 80, host: 9293
+  config.vm.network "forwarded_port", guest: 22, host: 2223
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
@@ -91,6 +93,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.options = ['--verbose']
       puppet.manifest_file = "init.pp"
    end
+
+  config.ssh.forward_agent = true
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding

@@ -16,8 +16,10 @@ class apacheconfig {
   }
 
   apache::mod { 'rewrite': }
+  apache::mod { 'wsgi': }
 
   apache::mod { 'php5': }
+  apache::listen { '8080': }
 
   class { 'php': }
 

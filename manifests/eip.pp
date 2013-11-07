@@ -76,6 +76,11 @@ class django {
 			timeout => 10000,
 		} 
 
+		exec {'install_tornado':
+			command => '/root/eip_website_venv/bin/pip install "tornado"',
+			timeout => 10000,
+		} 
+
 
 
 
@@ -89,6 +94,7 @@ class django {
 		-> Exec['install_pil']
 		-> Exec['install_distribute']
 		-> Exec['install_python_mysql']
+		-> Exec['install_tornado']
 		-> Exec['eip_web_syncdb']
 
 }
@@ -133,15 +139,7 @@ class eip {
 		exec {'checkout_svn_web':
 			command => 'svn checkout --non-interactive --username eipwebsite --password eipwebsite42 svn://91.121.12.93/eip_website /root/eip_website || true',
 			path    => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-			timeout => -1,
+			timeout => 0,
 			#creates => '/root/server_installed',
-		} ->
-		exec {'eip_web_syncdb':
-			command => '/root/eip_website_venv/bin/python  /root/eip_website/manage.py syncdb --noinput',
-			timeout => 10000,
 		}
-
-
-
-
 }
