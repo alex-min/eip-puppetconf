@@ -1,4 +1,4 @@
-B1;3201;0c#!/bin/bash
+#!/bin/bash
 apt-get install -y puppet rubygems;
 gem install puppet-module;
 mkdir -p /etc/puppet/modules;
