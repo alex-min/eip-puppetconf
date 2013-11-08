@@ -2,9 +2,10 @@ class apacheconfig {
   class { 'apache':
     service_enable => true,
     mpm_module => 'prefork'
-  } ->
+  }
+
   case $operatingsystem {
-      /(?i)(ubuntu|debian)/: {
+     'Ubuntu', 'Debian': {
         file { "/etc/apache2/conf.d/security.conf":
             mode => 440,
             notify  => Service["apache2"],
@@ -14,7 +15,6 @@ class apacheconfig {
         }
       }
   }
-
   apache::mod { 'rewrite': }
   apache::mod { 'wsgi': }
 
