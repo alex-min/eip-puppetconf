@@ -104,20 +104,8 @@ class eip {
 	  require deps
 	  require django
 
-		  exec {"mysql_change_password_anyway2": 
-		  		command => "mysqladmin -u root -p'' password 'wb9rbuay' || /bin/true",
-		  		path    => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-		  		onlyif => '/usr/bin/test -f /usr/bin/mysqladmin',
-		  		creates => '/root/server_installed'
-		  } ->
-		  exec {"mysql_change_password_anyway3": 
-		  		command => "mysqladmin -u root -p'eipbilantech' password 'wb9rbuay' || /bin/true",
-		  		path    => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-		  		onlyif => '/usr/bin/test -f /usr/bin/mysqladmin',
-		  		creates => '/root/server_installed'
-		  } ->
 		  class { '::mysql::server':
-		  	root_password => 'wb9rbuay',
+		  	root_password => 'root',
 		  } ->
 		   mysql_database { 'manhunt':
 			  ensure  => 'present',
