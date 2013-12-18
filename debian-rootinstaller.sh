@@ -1,8 +1,12 @@
 #!/bin/bash
-apt-get install -y puppet rubygems;
+apt-get install -y rubygems;
 gem install puppet-module;
+gem install facter
+apt-get remove puppet
+apt-get remove facter
 mkdir -p /etc/puppet/modules;
 cd modules
+alias puppet='/usr/local/bin/puppet';
 puppet module install puppetlabs-concat --force;
 puppet module install puppetlabs-stdlib --force;
 puppet module install example42/php --force;
