@@ -1,9 +1,9 @@
 #!/bin/bash
 apt-get install -y rubygems;
-gem install puppet-module;
-gem install facter
 apt-get remove puppet
 apt-get remove facter
+gem install puppet-module;
+gem install facter
 mkdir -p /etc/puppet/modules;
 cd modules
 alias puppet='/usr/local/bin/puppet';
